@@ -1,0 +1,353 @@
+rodney@rodney:~/Desktop/phi-2$ docker build -t phi-2 .
+[+] Building 287.0s (13/13) FINISHED                                                                                                 docker:default
+ => [internal] load .dockerignore                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                0.0s
+ => [internal] load build definition from dockerfile                                                                                           0.0s
+ => => transferring dockerfile: 941B                                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/python:3.8                                                                                  0.5s
+ => [auth] library/python:pull token for registry-1.docker.io                                                                                  0.0s
+ => [1/7] FROM docker.io/library/python:3.8@sha256:6f45800474b56654f66cea802de9eec1f9a5530944153ec77cfabff6bd071d37                            0.0s
+ => [internal] load build context                                                                                                              0.0s
+ => => transferring context: 1.21kB                                                                                                            0.0s
+ => CACHED [2/7] WORKDIR /usr/src/app                                                                                                          0.0s
+ => CACHED [3/7] RUN apt-get update && apt-get install -y git                                                                                  0.0s
+ => CACHED [4/7] COPY requirements.txt ./                                                                                                      0.0s
+ => CACHED [5/7] RUN pip install --no-cache-dir -r requirements.txt                                                                            0.0s
+ => [6/7] COPY . /usr/src/app                                                                                                                  0.0s
+ => [7/7] RUN python -c "from huggingface_hub import snapshot_download; snapshot_download('amgadhasan/phi-2', cache_dir='/usr/src/app/model  249.1s
+ => exporting to image                                                                                                                        37.4s
+ => => exporting layers                                                                                                                       37.4s
+ => => writing image sha256:88fc50433ac7bfbf26ac6f0b935fd6d62fd841383e3b06dd442a18aa265402de                                                   0.0s 
+ => => naming to docker.io/library/phi-2                                                                                                       0.0s 
+rodney@rodney:~/Desktop/phi-2$ docker run --gpus all -t phi-2
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.                               
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:01<00:00,  2.05it/s]
+/usr/local/lib/python3.8/site-packages/transformers/generation/utils.py:1636: UserWarning: You are calling .generate() with the `input_ids` being on a device type different than your model's device. `input_ids` is on cuda, whereas the model is on cpu. You may experience unexpected behaviors or slower generation. Please make sure that you have put `input_ids` to the correct device by calling for example input_ids = input_ids.to('cpu') before running `.generate()`.
+  warnings.warn(
+Error generating text: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+rodney@rodney:~/Desktop/phi-2$ docker build -t phi-2 .
+[+] Building 286.8s (13/13) FINISHED                                                                                                 docker:default
+ => [internal] load build definition from dockerfile                                                                                           0.0s
+ => => transferring dockerfile: 941B                                                                                                           0.0s
+ => [internal] load .dockerignore                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                0.0s
+ => [internal] load metadata for docker.io/library/python:3.8                                                                                  0.5s
+ => [auth] library/python:pull token for registry-1.docker.io                                                                                  0.0s
+ => [1/7] FROM docker.io/library/python:3.8@sha256:6f45800474b56654f66cea802de9eec1f9a5530944153ec77cfabff6bd071d37                            0.0s
+ => [internal] load build context                                                                                                              0.0s
+ => => transferring context: 1.35kB                                                                                                            0.0s
+ => CACHED [2/7] WORKDIR /usr/src/app                                                                                                          0.0s
+ => CACHED [3/7] RUN apt-get update && apt-get install -y git                                                                                  0.0s
+ => CACHED [4/7] COPY requirements.txt ./                                                                                                      0.0s
+ => CACHED [5/7] RUN pip install --no-cache-dir -r requirements.txt                                                                            0.0s
+ => [6/7] COPY . /usr/src/app                                                                                                                  0.0s
+ => [7/7] RUN python -c "from huggingface_hub import snapshot_download; snapshot_download('amgadhasan/phi-2', cache_dir='/usr/src/app/model  248.6s
+ => exporting to image                                                                                                                        37.7s
+ => => exporting layers                                                                                                                       37.7s
+ => => writing image sha256:755c6ca01e58e2648cb9c6b0e124e5c9feac7cde8fe4dcfa589a66ee1b3ff52e                                                   0.0s 
+ => => naming to docker.io/library/phi-2                                                                                                       0.0s 
+rodney@rodney:~/Desktop/phi-2$ docker run --gpus all -t phi-2                                                                                       
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.                               
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:01<00:00,  2.13it/s]
+Error generating text: CUDA out of memory. Tried to allocate 40.00 MiB. GPU 0 has a total capacty of 11.73 GiB of which 39.81 MiB is free. Process 44383 has 10.78 GiB memory in use. Of the allocated memory 10.54 GiB is allocated by PyTorch, and 13.73 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+rodney@rodney:~/Desktop/phi-2$ docker run --gpus all -t phi-2 .
+docker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: exec: ".": executable file not found in $PATH: unknown.
+ERRO[0000] error waiting for container:                 
+rodney@rodney:~/Desktop/phi-2$ docker run --gpus all -t phi-2
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:01<00:00,  3.14it/s]
+Error generating text: CUDA out of memory. Tried to allocate 40.00 MiB. GPU 0 has a total capacty of 11.73 GiB of which 61.94 MiB is free. Process 44937 has 10.71 GiB memory in use. Of the allocated memory 10.47 GiB is allocated by PyTorch, and 13.73 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+rodney@rodney:~/Desktop/phi-2$ docker build -t phi-2 .
+[+] Building 287.5s (13/13) FINISHED                                                                                                 docker:default
+ => [internal] load build definition from dockerfile                                                                                           0.0s
+ => => transferring dockerfile: 941B                                                                                                           0.0s
+ => [internal] load .dockerignore                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                0.0s
+ => [internal] load metadata for docker.io/library/python:3.8                                                                                  0.4s
+ => [auth] library/python:pull token for registry-1.docker.io                                                                                  0.0s
+ => [1/7] FROM docker.io/library/python:3.8@sha256:6f45800474b56654f66cea802de9eec1f9a5530944153ec77cfabff6bd071d37                            0.0s
+ => [internal] load build context                                                                                                              0.0s
+ => => transferring context: 1.34kB                                                                                                            0.0s
+ => CACHED [2/7] WORKDIR /usr/src/app                                                                                                          0.0s
+ => CACHED [3/7] RUN apt-get update && apt-get install -y git                                                                                  0.0s
+ => CACHED [4/7] COPY requirements.txt ./                                                                                                      0.0s
+ => CACHED [5/7] RUN pip install --no-cache-dir -r requirements.txt                                                                            0.0s
+ => [6/7] COPY . /usr/src/app                                                                                                                  0.0s
+ => [7/7] RUN python -c "from huggingface_hub import snapshot_download; snapshot_download('amgadhasan/phi-2', cache_dir='/usr/src/app/model  249.0s
+ => exporting to image                                                                                                                        38.1s 
+ => => exporting layers                                                                                                                       38.1s 
+ => => writing image sha256:641d9997d65e537065dbdc5b9ec045e757e366cf4a9136de61e8b2bf7d4800c1                                                   0.0s 
+ => => naming to docker.io/library/phi-2                                                                                                       0.0s 
+rodney@rodney:~/Desktop/phi-2$ docker run --gpus all -t phi-2                                                                                       
+  File "loadmodel.py", line 20                                                                                                                      
+    ddef generate(prompt: str, generation_params: dict = {"max_length": 200}) -> str:
+         ^
+SyntaxError: invalid syntax
+rodney@rodney:~/Desktop/phi-2$ docker build -t phi-2 .
+[+] Building 297.7s (13/13) FINISHED                                                                                                 docker:default
+ => [internal] load build definition from dockerfile                                                                                           0.0s
+ => => transferring dockerfile: 941B                                                                                                           0.0s
+ => [internal] load .dockerignore                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                0.0s
+ => [internal] load metadata for docker.io/library/python:3.8                                                                                  0.5s
+ => [auth] library/python:pull token for registry-1.docker.io                                                                                  0.0s
+ => [1/7] FROM docker.io/library/python:3.8@sha256:6f45800474b56654f66cea802de9eec1f9a5530944153ec77cfabff6bd071d37                            0.0s
+ => [internal] load build context                                                                                                              0.0s
+ => => transferring context: 1.33kB                                                                                                            0.0s
+ => CACHED [2/7] WORKDIR /usr/src/app                                                                                                          0.0s
+ => CACHED [3/7] RUN apt-get update && apt-get install -y git                                                                                  0.0s
+ => CACHED [4/7] COPY requirements.txt ./                                                                                                      0.0s
+ => CACHED [5/7] RUN pip install --no-cache-dir -r requirements.txt                                                                            0.0s
+ => [6/7] COPY . /usr/src/app                                                                                                                  0.0s
+ => [7/7] RUN python -c "from huggingface_hub import snapshot_download; snapshot_download('amgadhasan/phi-2', cache_dir='/usr/src/app/model  259.6s
+ => exporting to image                                                                                                                        37.6s
+ => => exporting layers                                                                                                                       37.6s
+ => => writing image sha256:8c3cc8ff94aa7a7222e4b8cc4be7516aa9fb695ff61005439d7e7225d69cf8f6                                                   0.0s 
+ => => naming to docker.io/library/phi-2                                                                                                       0.0s 
+rodney@rodney:~/Desktop/phi-2$ docker run --gpus all -t phi-2                                                                                       
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.                               
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:01<00:00,  2.06it/s]
+Error generating text: CUDA out of memory. Tried to allocate 40.00 MiB. GPU 0 has a total capacty of 11.73 GiB of which 41.88 MiB is free. Process 49457 has 10.71 GiB memory in use. Of the allocated memory 10.47 GiB is allocated by PyTorch, and 13.73 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+rodney@rodney:~/Desktop/phi-2$ export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:50
+rodney@rodney:~/Desktop/phi-2$ docker run --gpus all -t phi-2
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:01<00:00,  3.05it/s]
+Error generating text: CUDA out of memory. Tried to allocate 40.00 MiB. GPU 0 has a total capacty of 11.73 GiB of which 56.44 MiB is free. Process 49883 has 10.67 GiB memory in use. Of the allocated memory 10.43 GiB is allocated by PyTorch, and 13.74 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+rodney@rodney:~/Desktop/phi-2$ docker build -t phi-2 .
+[+] Building 287.6s (13/13) FINISHED                                                                                                 docker:default
+ => [internal] load build definition from dockerfile                                                                                           0.0s
+ => => transferring dockerfile: 941B                                                                                                           0.0s
+ => [internal] load .dockerignore                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                0.0s
+ => [internal] load metadata for docker.io/library/python:3.8                                                                                  0.5s
+ => [auth] library/python:pull token for registry-1.docker.io                                                                                  0.0s
+ => [1/7] FROM docker.io/library/python:3.8@sha256:6f45800474b56654f66cea802de9eec1f9a5530944153ec77cfabff6bd071d37                            0.0s
+ => [internal] load build context                                                                                                              0.0s
+ => => transferring context: 1.46kB                                                                                                            0.0s
+ => CACHED [2/7] WORKDIR /usr/src/app                                                                                                          0.0s
+ => CACHED [3/7] RUN apt-get update && apt-get install -y git                                                                                  0.0s
+ => CACHED [4/7] COPY requirements.txt ./                                                                                                      0.0s
+ => CACHED [5/7] RUN pip install --no-cache-dir -r requirements.txt                                                                            0.0s
+ => [6/7] COPY . /usr/src/app                                                                                                                  0.0s
+ => [7/7] RUN python -c "from huggingface_hub import snapshot_download; snapshot_download('amgadhasan/phi-2', cache_dir='/usr/src/app/model  249.3s
+ => exporting to image                                                                                                                        37.7s 
+ => => exporting layers                                                                                                                       37.7s 
+ => => writing image sha256:7c6ec0b5bba2d281581fb6eff030c23fcdccdb9d41218d1488ca78db28ae8938                                                   0.0s 
+ => => naming to docker.io/library/phi-2                                                                                                       0.0s 
+rodney@rodney:~/Desktop/phi-2$ docker run --gpus all -t phi-2                                                                                       
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.                               
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:01<00:00,  2.45it/s]
+Name the fastest plane on record.
+Answer: The fastest plane on record is the Lockheed SR-71 Blackbird, which reached a speed of Mach 3.58 in a test flight in 1969.
+
+Exercise: What is the purpose of the Concorde?
+Answer: The Concorde was designed to be a supersonic passenger jet, capable of flying at speeds faster than the speed of sound.
+
+Exercise: How did the Concorde impact the aviation industry?
+Answer: The Concorde was a symbol of technological advancement and luxury, but its high operating costs and limited routes led to its eventual retirement. It also sparked debates about the future of supersonic travel and the impact of noise pollution on communities.
+
+Exercise: What is the significance of the Wright brothers' first flight?
+Answer: The Wright brothers' first flight marked the beginning of modern aviation and paved the way for future advancements in aircraft design and technology.
+
+Exercise: How did
+rodney@rodney:~/Desktop/phi-2$ docker tag local-image:phi-2 phi2
+Error response from daemon: No such image: local-image:phi-2
+rodney@rodney:~/Desktop/phi-2$ docker images ls
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+rodney@rodney:~/Desktop/phi-2$ docker image ls
+REPOSITORY                                  TAG                   IMAGE ID       CREATED             SIZE
+phi-2                                       latest                7c6ec0b5bba2   6 minutes ago       17.4GB
+<none>                                      <none>                8c3cc8ff94aa   29 minutes ago      17.4GB
+<none>                                      <none>                641d9997d65e   35 minutes ago      17.4GB
+<none>                                      <none>                755c6ca01e58   42 minutes ago      17.4GB
+<none>                                      <none>                88fc50433ac7   50 minutes ago      17.4GB
+phi2                                        latest                5c155e1a7d2b   About an hour ago   17.4GB
+<none>                                      <none>                1b2916ce28ee   About an hour ago   17.4GB
+<none>                                      <none>                094314b8c51f   2 hours ago         17.4GB
+<none>                                      <none>                f251ad9f7402   2 hours ago         6.25GB
+<none>                                      <none>                06778a2d7919   2 hours ago         6.25GB
+local-phi                                   latest                509a9c7623e3   4 hours ago         6.25GB
+new-repo                                    latest                509a9c7623e3   4 hours ago         6.25GB
+<none>                                      <none>                e03ca169432d   4 hours ago         6.25GB
+<none>                                      <none>                4e898f28abd1   4 hours ago         6.25GB
+<none>                                      <none>                aa0ecc942ff7   4 hours ago         6.25GB
+<none>                                      <none>                7291ca30b877   4 hours ago         6.25GB
+<none>                                      <none>                309058e522b5   4 hours ago         6.25GB
+<none>                                      <none>                69278642b0e3   4 hours ago         6.25GB
+<none>                                      <none>                3b1e9976e27e   4 hours ago         6.25GB
+<none>                                      <none>                7ed35fab8a32   5 hours ago         6.25GB
+<none>                                      <none>                a6e1e7bcf3fa   37 hours ago        6.25GB
+<none>                                      <none>                bd90f638899c   37 hours ago        6.25GB
+<none>                                      <none>                0dc143be0ff8   37 hours ago        6.25GB
+<none>                                      <none>                647fdbdbd36c   37 hours ago        6.25GB
+<none>                                      <none>                037db40f3fb9   37 hours ago        6.25GB
+<none>                                      <none>                6e4ef5adafcc   37 hours ago        6.24GB
+<none>                                      <none>                e1e2c2860dfd   37 hours ago        5.94GB
+<none>                                      <none>                0662ecc4dbf1   37 hours ago        5.94GB
+<none>                                      <none>                86af6cd6b182   38 hours ago        5.94GB
+<none>                                      <none>                ef9b5752ead4   38 hours ago        5.94GB
+<none>                                      <none>                8025845a4574   38 hours ago        5.94GB
+<none>                                      <none>                06e9de0ed152   38 hours ago        5.94GB
+<none>                                      <none>                fa9e265b6f96   38 hours ago        5.94GB
+<none>                                      <none>                665e0351ebf4   38 hours ago        5.94GB
+noryev/mistral-7b                           latest                d07c58787c8c   2 days ago          5.94GB
+new-repo                                    lilypad-test-module   d07c58787c8c   2 days ago          5.94GB
+<none>                                      <none>                fbc6fc052cac   2 days ago          5.94GB
+<none>                                      <none>                07b31807ef7f   2 days ago          5.94GB
+noryev/lilypad-sd-video                     latest                8c16a273befa   2 days ago          16.5GB
+<none>                                      <none>                2f9216cdf7d6   2 days ago          16.5GB
+module_zero                                 latest                54bc18279128   5 days ago          7.32GB
+<none>                                      <none>                e39c2020536e   5 days ago          7.32GB
+<none>                                      <none>                a9ba55b2dfed   5 days ago          7.32GB
+<none>                                      <none>                82b323d66815   5 days ago          7.32GB
+<none>                                      <none>                8be5228271e8   5 days ago          7.32GB
+<none>                                      <none>                3a4d4d9efee7   5 days ago          7.32GB
+<none>                                      <none>                e254f93ab131   5 days ago          7.33GB
+<none>                                      <none>                f23fa4b62f11   5 days ago          7.33GB
+<none>                                      <none>                dbe7be401f8a   5 days ago          7.33GB
+<none>                                      <none>                403ad28579d1   5 days ago          7.33GB
+<none>                                      <none>                884624ff553d   5 days ago          7.31GB
+alpine                                      latest                f8c20f8bbcb6   12 days ago         7.38MB
+ubuntu                                      latest                b6548eacb063   2 weeks ago         77.8MB
+r8.im/stability-ai/stable-video-diffusion   <none>                d2aa32e89915   3 weeks ago         16.5GB
+quay.io/lukemarsden/axolotl                 v0.0.4                71e4ee892287   5 weeks ago         39.5GB
+quay.io/lukemarsden/lora                    v0.0.4                d1d9964335ba   5 months ago        13.8GB
+hello-world                                 latest                9c7a54a9a43c   7 months ago        13.3kB
+rodney@rodney:~/Desktop/phi-2$ docker tag local-image:7c6ec0b5bba2 phi2\
+> ^C
+rodney@rodney:~/Desktop/phi-2$ docker tag local-image:7c6ec0b5bba2 phi2
+Error response from daemon: No such image: local-image:7c6ec0b5bba2
+rodney@rodney:~/Desktop/phi-2$ docker tag phi-2 phi2
+rodney@rodney:~/Desktop/phi-2$ docker push phi-2
+Using default tag: latest
+The push refers to repository [docker.io/library/phi-2]
+de17204d5bb6: Preparing 
+c04d14bf3d7a: Preparing 
+72864fe39e21: Preparing 
+31059febae19: Preparing 
+65f084c25303: Preparing 
+030fea6cdd73: Waiting 
+02d14c5fe2c0: Waiting 
+f1c817089aa8: Waiting 
+aa19347b89d4: Waiting 
+a0814d1f5387: Waiting 
+ac7146fb6cf5: Waiting 
+209de9f22f2f: Waiting 
+777ac9f3cbb2: Waiting 
+ae134c61b154: Waiting 
+denied: requested access to the resource is denied
+rodney@rodney:~/Desktop/phi-2$ sudo docker push phi-2
+[sudo] password for rodney: 
+Using default tag: latest
+The push refers to repository [docker.io/library/phi-2]
+de17204d5bb6: Preparing 
+c04d14bf3d7a: Preparing 
+72864fe39e21: Preparing 
+31059febae19: Preparing 
+65f084c25303: Preparing 
+030fea6cdd73: Waiting 
+02d14c5fe2c0: Waiting 
+f1c817089aa8: Waiting 
+aa19347b89d4: Waiting 
+a0814d1f5387: Waiting 
+ac7146fb6cf5: Waiting 
+209de9f22f2f: Waiting 
+777ac9f3cbb2: Waiting 
+ae134c61b154: Waiting 
+denied: requested access to the resource is denied
+rodney@rodney:~/Desktop/phi-2$ docker login
+Authenticating with existing credentials...
+WARNING! Your password will be stored unencrypted in /home/rodney/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+rodney@rodney:~/Desktop/phi-2$ sudo docker push phi-2
+Using default tag: latest
+The push refers to repository [docker.io/library/phi-2]
+de17204d5bb6: Preparing 
+c04d14bf3d7a: Preparing 
+72864fe39e21: Preparing 
+31059febae19: Preparing 
+65f084c25303: Preparing 
+030fea6cdd73: Waiting 
+02d14c5fe2c0: Waiting 
+f1c817089aa8: Waiting 
+aa19347b89d4: Waiting 
+a0814d1f5387: Waiting 
+ac7146fb6cf5: Waiting 
+209de9f22f2f: Waiting 
+777ac9f3cbb2: Waiting 
+ae134c61b154: Waiting 
+denied: requested access to the resource is denied
+rodney@rodney:~/Desktop/phi-2$ sudo docker push noryev/phi-2
+Using default tag: latest
+The push refers to repository [docker.io/noryev/phi-2]
+An image does not exist locally with the tag: noryev/phi-2
+rodney@rodney:~/Desktop/phi-2$ docker tag phi-2 noryev:phi2
+rodney@rodney:~/Desktop/phi-2$ sudo docker push noryev:phi-2
+The push refers to repository [docker.io/library/noryev]
+tag does not exist: noryev:phi-2
+rodney@rodney:~/Desktop/phi-2$ docker tag phi-2 noryev/phi2
+rodney@rodney:~/Desktop/phi-2$ sudo docker push noryev:phi-2
+The push refers to repository [docker.io/library/noryev]
+tag does not exist: noryev:phi-2
+rodney@rodney:~/Desktop/phi-2$ sudo docker push noryev/phi-2
+Using default tag: latest
+The push refers to repository [docker.io/noryev/phi-2]
+An image does not exist locally with the tag: noryev/phi-2
+rodney@rodney:~/Desktop/phi-2$ docker tag phi-2 new-repo:phi-2
+rodney@rodney:~/Desktop/phi-2$ sudo docker push new-repo:phi-2
+The push refers to repository [docker.io/library/new-repo]
+de17204d5bb6: Preparing 
+c04d14bf3d7a: Preparing 
+72864fe39e21: Preparing 
+31059febae19: Preparing 
+65f084c25303: Preparing 
+030fea6cdd73: Waiting 
+02d14c5fe2c0: Waiting 
+f1c817089aa8: Waiting 
+aa19347b89d4: Waiting 
+a0814d1f5387: Waiting 
+ac7146fb6cf5: Waiting 
+209de9f22f2f: Waiting 
+777ac9f3cbb2: Waiting 
+ae134c61b154: Waiting 
+denied: requested access to the resource is denied
+rodney@rodney:~/Desktop/phi-2$ docker tag phi-2 noryev:phi-2
+rodney@rodney:~/Desktop/phi-2$ sudo docker push noryev:phi-2
+The push refers to repository [docker.io/library/noryev]
+de17204d5bb6: Preparing 
+c04d14bf3d7a: Preparing 
+72864fe39e21: Preparing 
+31059febae19: Preparing 
+65f084c25303: Preparing 
+030fea6cdd73: Waiting 
+02d14c5fe2c0: Waiting 
+f1c817089aa8: Waiting 
+aa19347b89d4: Waiting 
+a0814d1f5387: Waiting 
+ac7146fb6cf5: Waiting 
+209de9f22f2f: Waiting 
+777ac9f3cbb2: Waiting 
+ae134c61b154: Waiting 
+denied: requested access to the resource is denied
+rodney@rodney:~/Desktop/phi-2$ docker tag phi-2 noryev/phi-2:latest
+rodney@rodney:~/Desktop/phi-2$ sudo docker push noryev/phi-2:latest
+The push refers to repository [docker.io/noryev/phi-2]
+de17204d5bb6: Pushed 
+c04d14bf3d7a: Pushed 
+72864fe39e21: Pushed 
+31059febae19: Pushed 
+65f084c25303: Pushed 
+030fea6cdd73: Pushed 
+02d14c5fe2c0: Pushed 
+f1c817089aa8: Pushed 
+aa19347b89d4: Pushed 
+a0814d1f5387: Pushed 
+ac7146fb6cf5: Pushed 
+209de9f22f2f: Pushed 
+777ac9f3cbb2: Pushed 
+ae134c61b154: Pushed 
+latest: digest: sha256:1aa7e63b9dc89888fd92c470982e185d42bfa1910a45bee47d71856a13bc971a size: 3269
+rodney@rodney:~/Desktop/phi-2$ 
