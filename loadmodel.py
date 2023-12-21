@@ -1,12 +1,10 @@
 from huggingface_hub import snapshot_download
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import argparse
 
 # Set the default tensor type to float16 for mixed precision (reduces memory usage)
 torch.set_default_dtype(torch.float16)
-
-# Define the prompt
-prompt = "Name the fastest plane on record"
 
 # Set the path to the model directory (update this path according to your Docker setup)
 model_path = "/usr/src/app/model/models--amgadhasan--phi-2/snapshots/673ea632ab7f63050d40a457dba895ce92efb7ae"
@@ -30,6 +28,15 @@ def generate(prompt: str, generation_params: dict = {"max_length": 200}) -> str:
     except Exception as e:
         return f"Error generating text: {str(e)}"
 
-# Generate and print the result
-result = generate(prompt)
-print(result)
+def main():
+    # Set up argument parser
+    parser = argparse.ArgumentParser(description="Generate text from a prompt using a pretrained model.")
+    parser.add_argument('prompt', type=str, help='A prompt for the model')
+    args = parser.parse_args()
+
+    # Generate and print the result
+    result = generate(args.prompt)
+    print(result)
+
+if __name__ == "__main__":
+    main()
